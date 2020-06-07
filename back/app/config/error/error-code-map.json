@@ -1,0 +1,10 @@
+{
+    "not_found": {
+        "httpCode": 404,
+        "logMessage": "Entity not found"
+    },
+    "UNKNOWN": {
+        "httpCode": 500,
+        "logMessage": "Unknown error"
+    }
+}

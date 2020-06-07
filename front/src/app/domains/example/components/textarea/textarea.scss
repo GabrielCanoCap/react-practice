@@ -1,0 +1,36 @@
+.textarea {
+    position: relative;
+    background-color: #f0f0f0;
+    display: inline-block;
+}
+
+.textarea__field {
+    border: none;
+    outline: 0;
+    background-color: inherit;
+    margin-top: 1rem;
+    font-size: 2rem;
+    border: solid 2px black;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.textarea__placeholder {
+    position: absolute;
+    top: 1rem;
+    left: 0;
+    // width: 100%;
+    padding: 10px;
+    transition: 0.2s;
+    font-size: 2rem;
+    background-color: transparent;
+}
+
+.textarea__field:focus + .textarea__placeholder, .textarea__field--valid + .textarea__placeholder {
+    top: -1rem;
+    margin-top: 10px;
+    font-size: 1rem;
+    background-color: inherit;
+    padding: 5px;
+    margin-left: 5px;
+}

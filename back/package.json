@@ -1,0 +1,40 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "prestart": "npm run migrate:latest && npm run seed:run",
+    "migrate:latest": "npx knex migrate:latest --knexfile ./app/config/migration/knexfile.js",
+    "seed:run": "npx knex seed:run --knexfile ./app/config/migration/knexfile.js",
+    "start": "node index.js",
+    "dev": "npm run prestart && nodemon index.js",
+    "doc": "swagger-jsdoc ./app/domains/**/*.js ./app/config/doc/**/*.yaml -d ./app/config/doc/swagger-jsdoc-def.js -o ./doc/specs.json",
+    "postinstall": "npm run doc"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "config": "file:app/config",
+    "cors": "^2.8.5",
+    "env-cmd": "^10.1.0",
+    "express": "^4.17.1",
+    "express-promise-router": "^3.0.3",
+    "faker": "^4.1.0",
+    "helmet": "^3.22.0",
+    "infrastructure": "file:app/infrastructure",
+    "knex": "^0.21.1",
+    "morgan": "^1.10.0",
+    "pg": "^8.2.1",
+    "swagger-jsdoc": "^4.0.0",
+    "swagger-ui": "^3.25.1",
+    "swagger-ui-dist": "^3.25.1",
+    "swagger-ui-express": "^4.1.4",
+    "uuid": "^8.1.0",
+    "winston": "^3.2.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.3"
+  }
+}

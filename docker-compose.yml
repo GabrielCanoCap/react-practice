@@ -1,0 +1,68 @@
+version: "3.7"
+services: 
+  app:
+    container_name: app
+    build:
+      context: ./front
+      dockerfile: Dockerfile
+    volumes:
+      - './front:/app'
+      - '/app/node_modules'
+    ports:
+      - 3000:3000
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+      - CI=true
+    networks:
+      -  front-back-network
+  api:
+    container_name: api
+    build:
+      context: ./back
+      dockerfile: Dockerfile
+    volumes:
+      - './back:/app'
+      - '/app/node_modules'
+    ports:
+      - 3001:3001
+    environment:
+      - pg_host=db
+      - pg_port=5432
+      - pg_database=database
+      - pg_user=user
+      - pg_password=password
+    networks:
+      -  front-back-network
+      -  back-end-network
+    depends_on:
+      - db
+  db:
+    image: postgres
+    restart: always
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=database
+    ports:
+      - 5432:5432
+    networks: 
+      - back-end-network
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 3002:8080
+    networks:
+      - back-end-network
+    depends_on:
+      - db
+networks: 
+  default:
+    driver: none
+  front-back-network:
+    driver: bridge
+  back-end-network:
+    driver: bridge
+volumes: 
+  front-node-modules:
+

@@ -1,0 +1,25 @@
+{
+  "openapi": "3.0.2",
+  "info": {
+    "title": "api doc title",
+    "version": "1.0.0",
+    "description": "api decsription",
+    "contact": {
+      "name": "Gabriel Cano",
+      "email": "gabriel.cano@capgemini.com"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Parking",
+      "description": "Operation relative to the parking entity"
+    }
+  ],
+  "paths": {},
+  "components": {}
+}
