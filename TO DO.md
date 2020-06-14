@@ -21,6 +21,12 @@ Dans le back on va avoir besoin de:
 # TO DO API: 
 ## Transverse
  * Ajouter passport pour setup authentifacation (JWT) <- sans mot de passe que login pour simplifier mais que dans le front on puisse manipler un token comme sur un cas réel (manipulation des context en front + auth)
+ * Ecrire une doc minimal (README)
+    * Build documentation
+    * make/run migration
+    * Run app
+ * Ajouter une entité parking favori/suivie
+
 ## Entité parking
 
  * Tri sur les parking

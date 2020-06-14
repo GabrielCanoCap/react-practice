@@ -1,4 +1,8 @@
 {
+    "bad_request": {
+        "httpCode": 400,
+        "logMessage": "Bad request"
+    },
     "not_found": {
         "httpCode": 404,
         "logMessage": "Entity not found"

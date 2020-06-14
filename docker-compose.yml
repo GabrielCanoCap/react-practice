@@ -13,6 +13,7 @@ services:
     environment:
       - CHOKIDAR_USEPOLLING=true
       - CI=true
+      - BROWSER=none
     networks:
       -  front-back-network
   api:
@@ -37,6 +38,7 @@ services:
     depends_on:
       - db
   db:
+    container_name: db
     image: postgres
     restart: always
     environment:
@@ -48,6 +50,7 @@ services:
     networks: 
       - back-end-network
   adminer:
+    container_name: adminer
     image: adminer
     restart: always
     ports:
