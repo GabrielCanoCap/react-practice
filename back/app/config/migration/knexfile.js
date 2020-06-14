@@ -1,6 +1,4 @@
 // Update with your config settings.
-console.log(Object.fromEntries(Object.entries(process.env).filter(([key, val]) => key.startsWith("pg_"))));
-
 module.exports = {
   development: {
     client: 'pg',

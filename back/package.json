@@ -6,6 +6,7 @@
   "scripts": {
     "prestart": "npm run migrate:latest && npm run seed:run",
     "migrate:latest": "npx knex migrate:latest --knexfile ./app/config/migration/knexfile.js",
+    "migrate:make": "npx knex migrate:make --knexfile ./app/config/migration/knexfile.js",
     "seed:run": "npx knex seed:run --knexfile ./app/config/migration/knexfile.js",
     "start": "node index.js",
     "dev": "npm run prestart && nodemon index.js",
@@ -15,6 +16,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@hapi/joi": "^17.1.1",
     "body-parser": "^1.19.0",
     "config": "file:app/config",
     "cors": "^2.8.5",
@@ -28,8 +30,6 @@
     "morgan": "^1.10.0",
     "pg": "^8.2.1",
     "swagger-jsdoc": "^4.0.0",
-    "swagger-ui": "^3.25.1",
-    "swagger-ui-dist": "^3.25.1",
     "swagger-ui-express": "^4.1.4",
     "uuid": "^8.1.0",
     "winston": "^3.2.1"

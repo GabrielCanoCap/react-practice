@@ -1,4 +1,4 @@
-const parkingDataAccess = require("./parking.data-access");
+const parkingDataAccess = require("../data-access");
 const { errorUtils: { APIError } } = require("infrastructure");
 
 const getAll = async (pagination) => {
@@ -10,32 +10,23 @@ const getAll = async (pagination) => {
     return { ...result }
 };
 
-//TO DO
 const getById = async (id) => {
-    const result = await parkingDataAccess.selectById(id);
+    const result = await parkingDataAccess.selectParkingById(id);
     if(!result) {
         throw new APIError("not_found");
-    } 
-    else {
+    } else {
         return result;
     }
 }
 
-//TO DO
-const updateOneParking = () => {
-
-}
+const updateParking = async (data) => parkingDataAccess.updateParking(data);
 
 //TO DO
-const deleteOneParking = () => {
-
-}
+const deleteParking = async (id) => parkingDataAccess.deleteParking(id);
 
 //TO DO
-const createOneParking = () => {
-
-}
+const createParking = async (data) => parkingDataAccess.insertParking(data);
 
 module.exports = {
-    getAll, getById, updateOneParking, deleteOneParking, createOneParking
+    getAll, getById, updateParking, deleteParking, createParking
 };

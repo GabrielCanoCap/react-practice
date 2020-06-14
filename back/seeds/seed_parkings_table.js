@@ -15,10 +15,10 @@ const generateTuple = () => {
 
 const seed = async (knex) => {
     // Deletes ALL existing entries
-    await knex("parkings").del();
+    await knex("parking").del();
     // Inserts seed entries
     const fakeData = Array.from(Array(300), generateTuple);
-    return knex("parkings").insert(fakeData);
+    return knex("parking").insert(fakeData);
 };
 
 module.exports = { seed };
