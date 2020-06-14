@@ -3,6 +3,10 @@
         "httpCode": 400,
         "logMessage": "Bad request"
     },
+    "unauthorized": {
+        "httpCode": 401,
+        "logMessage": "Unauthorized error"
+    },
     "not_found": {
         "httpCode": 404,
         "logMessage": "Entity not found"

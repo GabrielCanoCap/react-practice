@@ -7,11 +7,10 @@
 const APIError = function (code, message = "") {
     const instance = new Error(message);
     instance.name = "APIError";
-    this.code = code;
-
+    instance.code = code;
     Object.setPrototypeOf(instance, Object.getPrototypeOf(this));
     Error.captureStackTrace(instance, APIError);
-
+    
     return instance;
 }
 

@@ -1,11 +1,12 @@
-const { database, errorUtils: { APIError } } = require("infrastructure");
+const { database } = require("infrastructure");
 const { v4: uuid } = require("uuid")
+
 const parkingSchemaName = "parking"
 
 const selectAll = async (pagination) => {
     const { offset, limit } = pagination;
     const query = database(parkingSchemaName).select().offset(offset).limit(limit);
-    const totalQueryResult = await database(parkingSchemaName).select().offset(offset).limit(limit).count();
+    const totalQueryResult = await database(parkingSchemaName).select().count();
     const result = await query;
     const total = parseInt(totalQueryResult[0].count);
 

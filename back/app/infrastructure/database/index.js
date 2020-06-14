@@ -4,11 +4,11 @@ const instance = knex({
     client: "pg",
     version: 12,
     connection: {
-        host: "db",
-        port: 5432,
-        user: "user",
-        password: "password",
-        database: "database"
+        host: process.env.pg_host,
+        port: process.env.pg_port,
+        user: process.env.pg_user,
+        password: process.env.pg_password,
+        database: process.env.pg_database
     }
 });
 

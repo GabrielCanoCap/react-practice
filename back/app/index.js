@@ -5,7 +5,7 @@ const morgan = require("morgan");
 const bodyParser = require("body-parser");
 
 const cors = require("cors");
-const { logger, errorUtils } = require("infrastructure");
+const { logger, errorUtils, authentication } = require("infrastructure");
 const { docRouterInjector } = require("config");
 
 const app = express()
@@ -15,6 +15,8 @@ app.use(cors());
 app.use(bodyParser.json());
 
 require("./domains/global-router-injector")(app);
+
+app.post("/authenticate", (req, res, next) => authentication.passportLogin(req, res, next));
 
 //Define request response in root URL (/)
 docRouterInjector(app);

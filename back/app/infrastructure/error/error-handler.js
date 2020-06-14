@@ -25,9 +25,6 @@ const errorHandler = (err, req, res, next) => {
 
         // Log the error
         logger.error(`[${id}] - ${errorCode} : ${errorInfo.logMessage}`);
-        if(err.message){
-            logger.error(`[${id}] - Extra information: ${err.message}`);
-        }
         logger.error(`[${id}]\n${err.stack}`);
 
         // Send response
