@@ -1,5 +1,5 @@
-const parkingRouterInjector = require("./parking/parking.router");
-const userRouterInjector = require("./user/user.router");
+const parkingRouterInjector = require("./parking/router");
+const userRouterInjector = require("./user/router");
 
 const globalRouterInjector = (app) => {
     parkingRouterInjector(app);

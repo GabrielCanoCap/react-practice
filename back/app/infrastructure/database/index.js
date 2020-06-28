@@ -8,8 +8,8 @@ const instance = knex({
         port: process.env.pg_port,
         user: process.env.pg_user,
         password: process.env.pg_password,
-        database: process.env.pg_database
-    }
+        database: process.env.pg_database,
+    },
 });
 
-module.exports = instance; 
+module.exports = instance;

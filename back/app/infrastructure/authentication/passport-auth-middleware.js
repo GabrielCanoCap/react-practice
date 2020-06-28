@@ -1,28 +1,27 @@
-const { APIError } = require("../error");
 const passport = require("passport");
 const jwt = require("jsonwebtoken");
+const { APIError } = require("../error");
 const setupPassport = require("./setup-passport");
 
 setupPassport(passport);
 
 const passportAuthenticate = (req, res, next) => {
-    passport.authenticate('jwt', { session: false }, (err, user, info) => {
+    passport.authenticate("jwt", { session: false }, (err, user, info) => {
         if (err || !user) {
-            next(new APIError("unauthorized", "Authentication failed"));
+            next(new APIError("unauthorized", `Authentication failed: ${info}`));
         } else {
-            return next();
+            next();
         }
     })(req, res);
 };
 
 const passportLogin = (req, res, next) => {
     passport.authenticate("local", { session: false }, (authError, user) => {
-        console.error(JSON.stringify({authError, user}, null, 2));
-        if(authError || !user) {
+        if (authError || !user) {
             next(new APIError("unauthorized", "Authentication failed"));
         } else {
-            req.login(user, { session: false }, loginError => {
-                if(loginError){
+            req.login(user, { session: false }, (loginError) => {
+                if (loginError) {
                     next(new APIError("unauthorized", "Login failed"));
                 }
 

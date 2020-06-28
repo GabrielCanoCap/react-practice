@@ -16,6 +16,26 @@ const selectAll = async (pagination) => {
     };
 };
 
+/**
+ * 
+ * @param {string} query The string to search
+ * @param {object} pagination 
+ * @param {number} pagination.offset 
+ * @param {number} pagination.limit
+ */
+const searchParking = async (query, pagination) => {
+    const { offset, limit } = pagination;
+    const result = await database(parkingSchemaName).select().where("address", "like", `%${query}%`).offset(offset).limit(limit);
+    const total = await database(parkingSchemaName).select().where("address", "like", `%${query}%`).count();
+    
+    return {
+        offset,
+        limit,
+        total: parseInt(total[0].count),
+        result
+    }
+}
+
 const selectParkingById = async (technical_id) => database(parkingSchemaName).select().where({technical_id}).first();
 
 const insertParking = async (data) => {

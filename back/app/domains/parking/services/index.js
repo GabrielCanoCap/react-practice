@@ -1,32 +1,31 @@
-const parkingDataAccess = require("../data-access");
 const { errorUtils: { APIError } } = require("infrastructure");
+const parkingDataAccess = require("../data-access");
 
 const getAll = async (pagination) => {
-    const { offset: strOffset, limit: strLimit } = pagination;
-    const offset = parseInt(strOffset);
-    const limit = parseInt(strLimit);
-
+    const { offset, limit } = pagination;
     const result = await parkingDataAccess.selectAll({ offset, limit });
-    return { ...result }
+    return { ...result };
 };
 
 const getById = async (id) => {
     const result = await parkingDataAccess.selectParkingById(id);
-    if(!result) {
+    if (!result) {
         throw new APIError("not_found");
     } else {
         return result;
     }
-}
+};
 
 const updateParking = async (data) => parkingDataAccess.updateParking(data);
 
-//TO DO
 const deleteParking = async (id) => parkingDataAccess.deleteParking(id);
 
-//TO DO
 const createParking = async (data) => parkingDataAccess.insertParking(data);
 
+// TODO
+// eslint-disable-next-line no-unused-vars
+const searchParking = async (query, pagination) => {};
+
 module.exports = {
-    getAll, getById, updateParking, deleteParking, createParking
+    getAll, getById, updateParking, deleteParking, createParking, searchParking,
 };

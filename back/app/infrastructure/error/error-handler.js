@@ -1,6 +1,6 @@
 const { v4: uuid } = require("uuid");
-const logger = require("../logger");
 const { httpMessageMap, errorCodeMap } = require("config").errorConfig;
+const logger = require("../logger");
 
 const APIError = require("./api-error");
 
@@ -8,10 +8,10 @@ const errorHandler = (err, req, res, next) => {
     // Generate an unique correlation id
     const id = uuid();
     // If the error is an instance of APIError
-    if(err.name == APIError.name){
+    if (err.name === APIError.name) {
         // Retrieve errorCode from config
         const errorCode = errorCodeMap[err.code] ? err.code : "UNKNOWN";
-        if (!errorCodeMap[err.code]){
+        if (!errorCodeMap[err.code]) {
             logger.warn(`Unkown error code "${err.code}", default set to "UNKNOWN`);
         }
 
@@ -19,7 +19,7 @@ const errorHandler = (err, req, res, next) => {
 
         // Retrieve defined http code and associate message from config
         const httpCode = httpMessageMap[`${errorInfo.httpCode}`] ? errorInfo.httpCode : 500;
-        if(!httpMessageMap[`${errorInfo.httpCode}`]) {
+        if (!httpMessageMap[`${errorInfo.httpCode}`]) {
             logger.warn(`Unknown Http code "${errorCode.httpCode}", default set to 500`);
         }
 

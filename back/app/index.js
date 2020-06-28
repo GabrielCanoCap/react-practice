@@ -1,14 +1,14 @@
-//Load express module with `require` directive
-const express = require('express')
+// Load express module with `require` directive
+const express = require("express");
 const helmet = require("helmet");
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
 
 const cors = require("cors");
-const { logger, errorUtils, authentication } = require("infrastructure");
+const { logger, errorUtils } = require("infrastructure");
 const { docRouterInjector } = require("config");
 
-const app = express()
+const app = express();
 app.use(morgan("combined", { stream: logger.stream }));
 app.use(helmet());
 app.use(cors());
@@ -16,18 +16,15 @@ app.use(bodyParser.json());
 
 require("./domains/global-router-injector")(app);
 
-app.post("/authenticate", (req, res, next) => authentication.passportLogin(req, res, next));
-
-//Define request response in root URL (/)
+// Define request response in root URL (/)
 docRouterInjector(app);
 
-app.get('/status', (req, res) => {
-  res.send({
-    status: "Online",
-    version: process.env.npm_package_version
-  });
+app.get("/status", (req, res) => {
+    res.send({
+        status: "Online",
+        version: process.env.npm_package_version,
+    });
 });
-
 
 app.use(errorUtils.errorHanler);
 

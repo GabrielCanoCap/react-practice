@@ -19,7 +19,11 @@ const swaggerDef = {
     ],
     tags: [
         {
-            name: "Parking",
+            name: "parking",
+            description: "Operation relative to the parking entity"
+        },
+        {
+            name: "user",
             description: "Operation relative to the parking entity"
         }
     ]
