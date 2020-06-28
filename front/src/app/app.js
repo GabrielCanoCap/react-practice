@@ -1,8 +1,8 @@
-import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
+import React from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { InputPageExample } from "./domains/example";
 
-import './app.scss';
+import "./app.scss";
 
 const App = () => (
   <div className="app">
